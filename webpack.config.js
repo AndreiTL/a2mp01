@@ -34,13 +34,13 @@ module.exports = {
       },
       {
         test: /\.scss$/,
-        // loaders: ExtractTextPlugin.extract('style-loader', 'css-loader!resolve-url!postcss-loader!sass-loader?sourceMap')
-        loaders: ['style-loader', 'css?{"modules":true,"sourceMap":true,"localIdentName":"[name]_[local]_[hash:base64:3]"}','sass' ]
+        loader: ExtractTextPlugin.extract('style-loader', 'css-loader!resolve-url!postcss-loader!sass-loader')
+        // loaders: ['style-loader', 'css?{"modules":true,"sourceMap":true,"localIdentName":"[name]_[local]_[hash:base64:3]"}','sass' ]
       },
       {
         test: /\.css$/,
         exclude: path.join(__dirname, 'index'),
-        loader: ExtractTextPlugin.extract('style', 'css?sourceMap')
+        loader: ExtractTextPlugin.extract('style', 'css')
       }
       // {
       //   test: /\.css$/,
