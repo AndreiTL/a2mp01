@@ -11,7 +11,7 @@ module.exports = {
   output: {
     path: path.join(__dirname, 'index'),
     filename: '[name].js',
-    publicPath: path.join(__dirname, 'index')
+    publicPath: ''
   },
 
   resolve: {
@@ -60,7 +60,7 @@ module.exports = {
       template: 'app/index.html'
     }),
 
-    new ExtractTextPlugin('[name].css')
+    new ExtractTextPlugin('./[name].css')
 
   ]
 };
