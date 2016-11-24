@@ -9,9 +9,9 @@ module.exports = {
   ],
 
   output: {
-    path: path.join(__dirname, 'dist'),
+    path: path.join(__dirname, 'index'),
     filename: '[name].js',
-    publicPath: path.join(__dirname, 'dist')
+    publicPath: path.join(__dirname, 'index')
   },
 
   resolve: {
@@ -39,7 +39,7 @@ module.exports = {
       },
       {
         test: /\.css$/,
-        exclude: path.join(__dirname, 'dist'),
+        exclude: path.join(__dirname, 'index'),
         loader: ExtractTextPlugin.extract('style', 'css?sourceMap')
       }
       // {
