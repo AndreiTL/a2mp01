@@ -38,4 +38,4 @@ class Main {
 
 var main = new Main();
 
-document.body.innerHTML = main.renderData();
+document.querySelector('.app').innerHTML = main.renderData();
