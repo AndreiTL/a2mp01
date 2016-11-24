@@ -1,3 +1,7 @@
-body > h1 {
+body {
+  background-color: green;
+}
+
+/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIi9wdWIvbWVudG9yaW5nL2EybXAwMS9hcHAvc3JjL2luZGV4LnNjc3MiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBQUE7RUFDRSx3QkFBd0IsRUFBRSIsImZpbGUiOiJpbmRleC5zY3NzIiwic291cmNlc0NvbnRlbnQiOlsiYm9keSB7XG4gIGJhY2tncm91bmQtY29sb3I6IGdyZWVuOyB9XG4iXX0= */body > h1 {
     margin: 80px;
 }
