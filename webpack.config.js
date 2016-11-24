@@ -11,7 +11,7 @@ module.exports = {
   output: {
     path: path.join(__dirname, 'index'),
     filename: '[name].js',
-    publicPath: './a2mp01/index/'
+    publicPath: path.join(__dirname, 'index')
   },
 
   resolve: {
