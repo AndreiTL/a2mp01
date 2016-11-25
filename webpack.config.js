@@ -18,6 +18,10 @@ module.exports = {
     extensions: ['', '.ts', '.js', '.scss']
   },
 
+  resolvePath: [
+    './node_modules/'
+  ],
+
   module: {
     loaders: [
       {

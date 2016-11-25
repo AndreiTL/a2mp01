@@ -13,65 +13,66 @@ export class WeatherService {
   weatherObject: Weather.IWeatherResponse;
   townTableTemp: string = '';
   townTableRender: string = 'Loading';
-  updateElementCallback: Function;
 
-  constructor(updateCallback: Function){
+  constructor(){
     this.innerBlock = `<div>        
             <div>Weather in towns: </div>
-            <div class="towntable"></div>
+            <div class="townstable"></div>
         </div> `;
-    this.updateElementCallback = updateCallback;
   }
 
-  _initTable(tableQuery: string){
-    tableQuery = `<div class='tablewrapper'>`
+  _initTable(){
+    return `<div class='tablewrapper'>`
   }
   _addLineToTable(tableQuery: string, row: string){
     tableQuery.concat(row);
   }
-  _endTable(tableQuery: string){
-    tableQuery.concat('</div>')
+  _endTable(){
+    return '</div>';
   }
   generateTableRow(rowObject: Weather.ITownWeather){
-    return `<div class='tablerow'> 
-        <span>${rowObject.name}</span>
-        <span>${rowObject.main.temp}</span>
+    return `<div class="tablerow"> 
+        <div class="cell townname"><span>${rowObject.name}</span></div>
+        <div class="cell towntemp"><span>${rowObject.main.temp-274.15}</span></div>
       </div>`;
   }
 
-  generateTownTable(array: Weather.ITownWeather[]){
-    this._initTable(this.townTableTemp);
+  generateTownTable(array: Weather.ITownWeather[], context: WeatherService){
+    context.townTableTemp = context._initTable();
     array.forEach((value, index, array) => {
-      this._addLineToTable(this.townTableTemp, this.generateTableRow(value));
-    })
-    this._endTable(this.townTableTemp);
+      // context._addLineToTable(context.townTableTemp, context.generateTableRow(value));
+      context.townTableTemp = context.townTableTemp.concat(context.generateTableRow(value));
+    });
+    // context._endTable(context.townTableTemp);
+    context.townTableTemp = context.townTableTemp.concat(context._endTable());
 
-    console.log(this.townTableTemp);
+    console.log(context.townTableTemp);
 
-    this.townTableRender = new String(this.townTableTemp);
-    this.updateElementCallback();
+    context.townTableRender = String(context.townTableTemp);
+    context.updateTowsTable(context);
+  }
+
+  updateTowsTable(context: WeatherService){
+    document.querySelector('.townstable').innerHTML = context.townTableRender;
   }
 
   downloadWeatherInCircle(coordinates: Coordinates, context: WeatherService){
     let urlTemplate: string = `http://api.openweathermap.org/data/2.5/find?lat=${coordinates.latitude}&lon=${coordinates.longitude}&cnt=${context.cnt}&appid=${context.API}`;
     console.log(urlTemplate);
-    RestService.sendRequest(context.type, urlTemplate, context.async, context.callBackResponseList, '');
+    RestService.sendRequest(context.type, urlTemplate, context.async, context.callBackResponseList, context, '');
   }
 
-  callBackResponseList(data: string){
+  callBackResponseList(data: string, context: WeatherService){
     if (data !== null){
       console.log(' data ' + data);
-      this.weatherObject = <Weather.IWeatherResponse> JSON.parse(data);
-      this.generateTownTable(this.weatherObject.list);
+      context.weatherObject = <Weather.IWeatherResponse> JSON.parse(data);
+      context.generateTownTable(context.weatherObject.list, context);
+      context.updateTowsTable(context);
     } else {
       console.log('Cann\'t load data from weather portal!');
       alert('Cann\'t load data from weather portal!');
     }
   }
-
-  // downloadweather(){
-  //   RestService.sendRequest(this.type, this.url, this.async, this.callBackResponseOneTown, '');
-  // }
 
   getInner(){
     LocationService.getCurrentLocation(this.downloadWeatherInCircle, this);

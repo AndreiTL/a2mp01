@@ -1,7 +1,7 @@
 
 export const RestService =  {
 
-  sendRequest(type: string, url: string, async: boolean, callBack: Function, body:string) {
+  sendRequest(type: string, url: string, async: boolean, callBack: Function, context: Object, body:string) {
     let xhr = new XMLHttpRequest();
     xhr.open(type, url, async);
     xhr.send([body]);
@@ -13,7 +13,7 @@ export const RestService =  {
         callBack(null);
       } else {
         // console.log(this.responseText);
-        callBack(this.responseText)
+        callBack(this.responseText, context);
       }
     }
   }

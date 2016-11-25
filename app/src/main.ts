@@ -9,12 +9,8 @@ class Main {
   googleMapService: GoogleMapService;
 
   constructor(){
-    this.weatherService = new WeatherService(this.updateCallback);
+    this.weatherService = new WeatherService();
     this.googleMapService = new GoogleMapService();
-  }
-
-  updateCallback(){
-
   }
 
   renderData(){
