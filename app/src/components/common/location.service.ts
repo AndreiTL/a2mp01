@@ -1,7 +1,7 @@
 
 export const LocationService =  {
 
-  getCurrentLocation(callBack: Function) {
+  getCurrentLocation(callBack: Function, context: Object ) {
 
     let options = {
       enableHighAccuracy: true,
@@ -16,7 +16,7 @@ export const LocationService =  {
       console.log('Latitude : ' + crd.latitude);
       console.log('Longitude: ' + crd.longitude);
       console.log('More or less ' + crd.accuracy + ' meters.');
-      callBack(crd);
+      callBack(crd, context);
       return;
     }
 
