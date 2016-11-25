@@ -2,9 +2,41 @@
   height: 400px;
 }
 
+.townstable {
+  max-width: 600px;
+  margin: 1rem auto;
+  border: 1px solid black;
+}
+
+.tablerow {
+  height: 35px;
+  border: 1px solid blue;
+  padding: 1px;
+}
+
+.tablerow > div {
+  display: inline-block;
+  padding: 1px;
+}
+
+.cell {
+  border: 1px solid blue;
+  text-align: center;
+}
+
+.townname {
+  height: 30px;
+  width: 120px;
+}
+
+.towntemp {
+  height: 30px;
+  width: 50px;
+}
+
 body,
 html {
   height: 100%;
 }
 
-/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIi9wdWIvbWVudG9yaW5nL2EybXAwMS9hcHAvc3JjL2luZGV4LnNjc3MiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBQUE7RUFDRSxjQUFjLEVBQUU7O0FBRWxCO0VBQ0UsYUFBYSxFQUFFIiwiZmlsZSI6ImluZGV4LnNjc3MiLCJzb3VyY2VzQ29udGVudCI6WyIjbWFwIHtcbiAgaGVpZ2h0OiA0MDBweDsgfVxuXG5ib2R5LCBodG1sIHtcbiAgaGVpZ2h0OiAxMDAlOyB9XG4iXX0= */
+/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIi9wdWIvbWVudG9yaW5nL2EybXAwMS9hcHAvc3JjL2luZGV4LnNjc3MiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBQUE7RUFDRSxjQUFjLEVBQUU7O0FBRWxCO0VBQ0UsaUJBQWlCO0VBQ2pCLGtCQUFrQjtFQUNsQix3QkFBd0IsRUFBRTs7QUFFNUI7RUFDRSxhQUFhO0VBQ2IsdUJBQXVCO0VBQ3ZCLGFBQWEsRUFBRTs7QUFFakI7RUFDRSxzQkFBc0I7RUFDdEIsYUFBYSxFQUFFOztBQUVqQjtFQUNFLHVCQUF1QjtFQUN2QixtQkFBbUIsRUFBRTs7QUFFdkI7RUFDRSxhQUFhO0VBQ2IsYUFBYSxFQUFFOztBQUVqQjtFQUNFLGFBQWE7RUFDYixZQUFZLEVBQUU7O0FBRWhCO0VBQ0UsYUFBYSxFQUFFIiwiZmlsZSI6ImluZGV4LnNjc3MiLCJzb3VyY2VzQ29udGVudCI6WyIjbWFwIHtcbiAgaGVpZ2h0OiA0MDBweDsgfVxuXG4udG93bnN0YWJsZSB7XG4gIG1heC13aWR0aDogNjAwcHg7XG4gIG1hcmdpbjogMXJlbSBhdXRvO1xuICBib3JkZXI6IDFweCBzb2xpZCBibGFjazsgfVxuXG4udGFibGVyb3cge1xuICBoZWlnaHQ6IDM1cHg7XG4gIGJvcmRlcjogMXB4IHNvbGlkIGJsdWU7XG4gIHBhZGRpbmc6IDFweDsgfVxuXG4udGFibGVyb3cgPiBkaXYge1xuICBkaXNwbGF5OiBpbmxpbmUtYmxvY2s7XG4gIHBhZGRpbmc6IDFweDsgfVxuXG4uY2VsbCB7XG4gIGJvcmRlcjogMXB4IHNvbGlkIGJsdWU7XG4gIHRleHQtYWxpZ246IGNlbnRlcjsgfVxuXG4udG93bm5hbWUge1xuICBoZWlnaHQ6IDMwcHg7XG4gIHdpZHRoOiAxMjBweDsgfVxuXG4udG93bnRlbXAge1xuICBoZWlnaHQ6IDMwcHg7XG4gIHdpZHRoOiA1MHB4OyB9XG5cbmJvZHksIGh0bWwge1xuICBoZWlnaHQ6IDEwMCU7IH1cbiJdfQ== */
