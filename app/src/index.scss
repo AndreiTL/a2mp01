@@ -1,3 +1,4 @@
-body {
-  background-color: green;
+@import './components/googlemap_component/googlemap';
+body , html{
+  height: 100%;
 }
