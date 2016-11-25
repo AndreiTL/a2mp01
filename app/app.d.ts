@@ -1,4 +1,4 @@
-declare module Bua {
+declare module App {
 
   interface IHeaders {
     [name:string] : string;

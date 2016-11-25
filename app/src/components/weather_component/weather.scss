@@ -1,0 +1,28 @@
+
+.townstable{
+  max-width:600px;
+  margin: 1rem auto;
+  border: 1px solid black;
+}
+
+.tablerow{
+  height: 35px;
+  border: 1px solid blue;
+  padding: 1px;
+}
+.tablerow > div {
+  display: inline-block;
+  padding: 1px;
+}
+.cell{
+  border: 1px solid blue;
+  text-align: center;
+}
+.townname{
+  height: 30px;
+  width: 120px;
+}
+.towntemp{
+  height: 30px;
+  width: 50px;
+}
