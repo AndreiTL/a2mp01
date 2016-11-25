@@ -1,5 +1,6 @@
 
 import {RestService} from '../common/rest.service';
+import {LocationService} from '../common/location.service';
 
 export class WeatherService {
 
@@ -14,7 +15,14 @@ export class WeatherService {
   constructor(){
     this.innerBlock = `<div>        
         <div> Wheather table will be here </div>
-        </div> `
+        </div> `;
+    LocationService.getCurrentLocation(this.locationCallback);
+
+  }
+
+  locationCallback(coordinates: Coordinates){
+
+    console.log('locationCallback is called');
   }
 
   callBackResponse(data: string){
