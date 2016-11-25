@@ -2,42 +2,29 @@
 // require('es6-promise').polyfill();
 // import * as Promise from 'es6-promise/Promise';
 
+export const RestService =  {
 
-export class RestService {
+  sendRequest(type: string, url: string, async: boolean, callBack: Function, body:string) {
+  //   let promise = new Promise(function(resolve, reject) {
+  //   });
+    let xhr = new XMLHttpRequest();
 
-  constructor() {
+    xhr.open(type, url, async);
 
+    xhr.send([body]);
+    xhr.onreadystatechange = function() {
+      if (this.readyState != 4) return;
+      // console.log(this.readyState + "" + this.status);
+      if (this.status != 200) {
+        // console.log(this.status + ': ' + this.statusText);
+        callBack(null);
+      } else {
+        // console.log(this.responseText);
+        callBack(this.responseText)
+      }
+    }
   }
 
-  // sendRequest(type, url, data) {
-  //
-  //   let promise = new Promise(function(resolve, reject) {
-  //
-  //   });
-  //
-  //   var xhr = new XMLHttpRequest();
-  //
-  //   xhr.open(type, url, false);
-  //
-  //   // xhr.send();
-  //
-  //
-  //   // xhr.open("GET", open_str, true);
-  //   xhr.onreadystatechange = function() {
-  //     alert(xhr.readyState + "" + xhr.status);
-  //     if (xhr.readyState == 4 && xhr.status == 200) {
-  //
-  //       alert("session opend success");
-  //
-  //       var json = JSON.parse(xhr.responseText);
-  //       alert(JSON.stringify(json, null, 10));
-  //
-  //     }
-  //   }
-  //
-  //   xhr.send();
-  //
-  // }
 
 }
 
