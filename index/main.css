@@ -1,7 +1,10 @@
-body {
-  background-color: green;
+#map {
+  height: 400px;
 }
 
-/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIi9wdWIvbWVudG9yaW5nL2EybXAwMS9hcHAvc3JjL2luZGV4LnNjc3MiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBQUE7RUFDRSx3QkFBd0IsRUFBRSIsImZpbGUiOiJpbmRleC5zY3NzIiwic291cmNlc0NvbnRlbnQiOlsiYm9keSB7XG4gIGJhY2tncm91bmQtY29sb3I6IGdyZWVuOyB9XG4iXX0= */body > h1 {
-    margin: 80px;
+body,
+html {
+  height: 100%;
 }
+
+/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIi9wdWIvbWVudG9yaW5nL2EybXAwMS9hcHAvc3JjL2luZGV4LnNjc3MiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBQUE7RUFDRSxjQUFjLEVBQUU7O0FBRWxCO0VBQ0UsYUFBYSxFQUFFIiwiZmlsZSI6ImluZGV4LnNjc3MiLCJzb3VyY2VzQ29udGVudCI6WyIjbWFwIHtcbiAgaGVpZ2h0OiA0MDBweDsgfVxuXG5ib2R5LCBodG1sIHtcbiAgaGVpZ2h0OiAxMDAlOyB9XG4iXX0= */
