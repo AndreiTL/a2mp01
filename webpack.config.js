@@ -19,7 +19,9 @@ module.exports = {
   },
 
   resolvePath: [
-    './node_modules/'
+    './node_modules/',
+    './node_modules/load-google-maps-api/'
+
   ],
 
   module: {

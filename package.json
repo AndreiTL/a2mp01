@@ -11,7 +11,7 @@
     "whatwg-fetch": "1.0.0"
   },
   "devDependencies": {
-
+    "@types/google-maps": "^3.1.28",
     "autoprefixer": "^6.3.2",
     "awesome-typescript-loader": "^2.2.4",
     "copy-webpack-plugin": "^4.0.1",
@@ -20,6 +20,7 @@
     "file-loader": "^0.8.5",
     "html-loader": "^0.4.3",
     "html-webpack-plugin": "^2.15.0",
+    "load-google-maps-api": "0.0.2",
     "node-sass": "^3.4.2",
     "null-loader": "^0.1.1",
     "postcss-loader": "^1.1.1",

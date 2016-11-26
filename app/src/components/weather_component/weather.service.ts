@@ -33,7 +33,7 @@ export class WeatherService {
   generateTableRow(rowObject: Weather.ITownWeather){
     return `<div class="tablerow"> 
         <div class="cell townname"><span>${rowObject.name}</span></div>
-        <div class="cell towntemp"><span>${rowObject.main.temp-274.15}</span></div>
+        <div class="cell towntemp"><span>${rowObject.main.temp-273.15}</span></div>
       </div>`;
   }
 

@@ -10,7 +10,7 @@ class Main {
 
   constructor(){
     this.weatherService = new WeatherService();
-    this.googleMapService = new GoogleMapService();
+    this.googleMapService = new GoogleMapService('52.4383235', '31.0015138', '8');
   }
 
   renderData(){

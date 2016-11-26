@@ -1,3 +1,4 @@
+import loadGoogleMapsAPI from 'load-google-maps-api';
 
 
 export class GoogleMapService {
@@ -7,15 +8,43 @@ export class GoogleMapService {
   // lat: string = '52.4383235';
   // lng: string = '31.0015138';
 
+  lat: string = '0.0';
+  lng: string = '0.0';
+  zoom: string = '1';
+
+  key: string = 'AIzaSyDdauxpzXTyktNa8x97awm9_3X-3pycINA';
+
+  googleMapObj: Object;
+
   innerBlock: string = `<div id="map"></div>`;
-  constructor(){
+  constructor(lat: string, lng: string, zoom: string){
+    this.lat = lat;
+    this.lng = lng;
+    this.zoom = zoom;
+
+    this.initMap();
 
   }
 
+
+
+  initMap() {
+    loadGoogleMapsAPI({key: this.key}).then((googleMaps: any) => {
+      // console.log(googleMaps); //=> Object { Animation: Object, ...
+
+      this.googleMapObj = new googleMaps.Map(document.getElementById('map'), {
+        center: {lat: parseFloat(this.lat), lng: parseFloat(this.lng)},
+        zoom: parseInt(this.zoom)
+      });
+
+    }).catch((err: Object) => {
+      console.error(err);
+      alert('Cann\'t load google map!');
+    });
+  }
 
   getInner (){
     return this.innerBlock;
   }
-
 
 }
