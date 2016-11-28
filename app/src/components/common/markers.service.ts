@@ -7,7 +7,7 @@ export const MarkersService ={
       sampleArray.push({
         lng: value.coord.lon,
         lat: value.coord.lat,
-        text: String(value.main.temp),
+        text: value.name +': '+ String(Math.round(value.main.temp - 273.15)),
         name: value.name
       })
 
