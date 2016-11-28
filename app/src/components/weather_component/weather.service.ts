@@ -62,13 +62,11 @@ export class WeatherService {
 
   downloadWeatherInCircle(latitude: number, longitude: number, count: number ){
     let urlTemplate: string = `http://api.openweathermap.org/data/2.5/find?lat=${latitude}&lon=${longitude}&cnt=${count}&appid=${this.API}`;
-    console.log(urlTemplate);
     RestService.sendRequest(this.type, urlTemplate, this.async, this.callBackResponseList, this, '');
   }
 
   callBackResponseList(data: string, context: WeatherService){
     if (data !== null){
-      console.log(' data ' + data);
       context.weatherObject = <Weather.IWeatherResponse> JSON.parse(data);
       context.generateTownTable(context.weatherObject.list, context);
       context.updateTowsTable(context);

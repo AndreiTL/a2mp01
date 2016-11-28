@@ -34,8 +34,6 @@ export class GoogleMapService {
 
   initMap() {
     loadGoogleMapsAPI({key: this.key}).then((googleMaps: any) => {
-      // console.log(googleMaps); //=> Object { Animation: Object, ...
-
       this.googleMapObj = new googleMaps.Map(document.getElementById('googlemap'), {
         center: {lat: parseFloat(this.lat), lng: parseFloat(this.lng)},
         zoom: parseInt(this.zoom)

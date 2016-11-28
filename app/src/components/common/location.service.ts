@@ -22,6 +22,7 @@ export const LocationService =  {
 
     function error(err: PositionError): PositionErrorCallback  {
       console.warn('ERROR(' + err.code + '): ' + err.message);
+      alert('Cann\'t get your current position!');
       return;
     }
 

@@ -40,6 +40,6 @@ class Main {
   }
 }
 
-var main = new Main(5);
+var main = new Main(50);
 
 document.querySelector('.app').innerHTML = main.renderData();
