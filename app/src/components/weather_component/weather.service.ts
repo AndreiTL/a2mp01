@@ -15,7 +15,7 @@ export class WeatherService {
   constructor(){
     this.innerBlock = `<div>        
             <div>Weather in towns: </div>
-            <div class="townstable"></div>
+            <div class="townstable">${this.townTableRender}</div>
         </div> `;
   }
 
@@ -29,10 +29,20 @@ export class WeatherService {
     return '</div>';
   }
   generateTableRow(rowObject: Weather.ITownWeather){
-    return `<div class="tablerow"> 
-        <div class="cell townname"><span>${rowObject.name}</span></div>
-        <div class="cell towntemp"><span>${Math.round(rowObject.main.temp-273.15)}</span></div>
-      </div>`;
+    return `<div class="rowelement">         
+        <table class="tablerow">
+            <tr>
+                <td><span class="townname">${rowObject.name}</span></td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td><span>Temperature: </span><span>${Math.round(rowObject.main.temp-273.15)}</span></td>
+                <td><span>Humidity: </span><span>${rowObject.main.humidity||''}</span></td>
+                <td><span>Wind: </span><span>${rowObject.wind.speed||''}</span></td>
+            </tr>
+        </table>        
+      </div>`
   }
 
   generateTownTable(array: Weather.ITownWeather[], context: WeatherService){

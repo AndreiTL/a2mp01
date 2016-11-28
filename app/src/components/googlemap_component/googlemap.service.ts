@@ -16,7 +16,7 @@ export class GoogleMapService {
 
   googleMapObj: google.maps.Map;
 
-  innerBlock: string = `<div id="map"></div>`;
+  innerBlock: string = `<div id="googlemap"></div>`;
   constructor(){
     this.initMap();
   }
@@ -36,7 +36,7 @@ export class GoogleMapService {
     loadGoogleMapsAPI({key: this.key}).then((googleMaps: any) => {
       // console.log(googleMaps); //=> Object { Animation: Object, ...
 
-      this.googleMapObj = new googleMaps.Map(document.getElementById('map'), {
+      this.googleMapObj = new googleMaps.Map(document.getElementById('googlemap'), {
         center: {lat: parseFloat(this.lat), lng: parseFloat(this.lng)},
         zoom: parseInt(this.zoom)
       });

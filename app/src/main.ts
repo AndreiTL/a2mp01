@@ -33,13 +33,13 @@ class Main {
 
   renderData(){
     LocationService.getCurrentLocation(this.updateForLocation, this);
-    return `<div> 
+    return `<div class="container"> 
           <div class='weather'>${this.weatherService.getInner()}</div>
           <div class='map'>${this.googleMapService.getInner()}</div>
       </div>`;
   }
 }
 
-var main = new Main(50);
+var main = new Main(5);
 
 document.querySelector('.app').innerHTML = main.renderData();
