@@ -12,6 +12,8 @@ export class WeatherService {
   townTableTemp: string = '';
   townTableRender: string = 'Loading';
 
+  callbackDownloadFunction: Function;
+
   constructor(){
     this.innerBlock = `<div>        
             <div>Weather in towns: </div>
@@ -19,16 +21,16 @@ export class WeatherService {
         </div> `;
   }
 
-  _initTable(){
+  private _initTable(){
     return `<div class='tablewrapper'>`
   }
   // _addLineToTable(tableQuery: string, row: string){
   //   tableQuery.concat(row);
   // }
-  _endTable(){
+  private _endTable(){
     return '</div>';
   }
-  generateTableRow(rowObject: Weather.ITownWeather){
+  private generateTableRow(rowObject: Weather.ITownWeather){
     return `<div class="rowelement">         
         <table class="tablerow">
             <tr>
@@ -45,7 +47,7 @@ export class WeatherService {
       </div>`
   }
 
-  generateTownTable(array: Weather.ITownWeather[], context: WeatherService){
+  private generateTownTable(array: Weather.ITownWeather[], context: WeatherService){
     context.townTableTemp = context._initTable();
     array.forEach((value, index, array) => {
       context.townTableTemp = context.townTableTemp.concat(context.generateTableRow(value));
@@ -56,24 +58,32 @@ export class WeatherService {
     context.updateTowsTable(context);
   }
 
-  updateTowsTable(context: WeatherService){
+  private updateTowsTable(context: WeatherService){
     document.querySelector('.townstable').innerHTML = context.townTableRender;
   }
 
-  downloadWeatherInCircle(latitude: number, longitude: number, count: number ){
-    let urlTemplate: string = `http://api.openweathermap.org/data/2.5/find?lat=${latitude}&lon=${longitude}&cnt=${count}&appid=${this.API}`;
-    RestService.sendRequest(this.type, urlTemplate, this.async, this.callBackResponseList, this, '');
-  }
-
-  callBackResponseList(data: string, context: WeatherService){
+  private callBackResponseList(data: string, context: WeatherService){
     if (data !== null){
       context.weatherObject = <Weather.IWeatherResponse> JSON.parse(data);
       context.generateTownTable(context.weatherObject.list, context);
       context.updateTowsTable(context);
+      if (context.callbackDownloadFunction !== undefined){
+        context.callbackDownloadFunction();
+      }
     } else {
       console.log('Cann\'t load data from weather portal!');
       alert('Cann\'t load data from weather portal!');
     }
+  }
+
+  downloadWeatherInCircle(latitude: number, longitude: number, count: number, callbackFunction: Function ){
+    let urlTemplate: string = `http://api.openweathermap.org/data/2.5/find?lat=${latitude}&lon=${longitude}&cnt=${count}&appid=${this.API}`;
+    this.callbackDownloadFunction = callbackFunction;
+    RestService.sendRequest(this.type, urlTemplate, this.async, this.callBackResponseList, this, '');
+  }
+
+  getWeatherObject(){
+    return this.weatherObject;
   }
 
   getInner(){

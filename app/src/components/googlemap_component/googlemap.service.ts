@@ -16,6 +16,8 @@ export class GoogleMapService {
 
   googleMapObj: google.maps.Map;
 
+  markerArray: IGoogleMapService.IMarkerPoint[];
+
   innerBlock: string = `<div id="googlemap"></div>`;
   constructor(){
     this.initMap();
@@ -30,6 +32,17 @@ export class GoogleMapService {
       zoom: zoom
     };
     this.googleMapObj.setOptions(mapOptions);
+  }
+
+  setMarkers(markerSetArray: IGoogleMapService.IMarkerPoint[]){
+    this.markerArray = markerSetArray;
+    markerSetArray.forEach((value: IGoogleMapService.IMarkerPoint, index: number, array: IGoogleMapService.IMarkerPoint[]) => {
+      let marker = new google.maps.Marker({
+        position: {lat: value.lat, lng: value.lng},
+        map: this.googleMapObj,
+        title: value.text
+      });
+    })
   }
 
   initMap() {

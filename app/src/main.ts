@@ -4,6 +4,7 @@ import {WeatherService} from './components/weather_component/weather.service';
 import {GoogleMapService} from './components/googlemap_component/googlemap.service';
 
 import {LocationService} from './components/common/location.service';
+import {MarkersService} from './components/common/markers.service';
 
 class Main {
   weatherService: WeatherService;
@@ -27,8 +28,13 @@ class Main {
     let count: number = context.defaultCount;
 
     context.googleMapService.setMapCenterAndZoom.call(context.googleMapService, lat, lng, zoom);
-    context.weatherService.downloadWeatherInCircle.call(context.weatherService, lat, lng, count);
+    context.weatherService.downloadWeatherInCircle.call(context.weatherService, lat, lng, count, context.updateWeatherMarkers);
 
+  }
+
+  updateWeatherMarkers(){
+    let markers: IGoogleMapService.IMarkerPoint[] = MarkersService.processMarkers(this.weatherService.getWeatherObject().list);
+    this.googleMapService.setMarkers(markers);
   }
 
   renderData(){
@@ -40,6 +46,6 @@ class Main {
   }
 }
 
-var main = new Main(50);
+var main = new Main(5);
 
 document.querySelector('.app').innerHTML = main.renderData();

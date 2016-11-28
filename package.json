@@ -7,11 +7,9 @@
     "start": "webpack-dev-server"
   },
   "dependencies": {
-    "es6-promise": "3.2.1",
-    "whatwg-fetch": "1.0.0"
+
   },
   "devDependencies": {
-    "@types/google-maps": "^3.1.28",
     "autoprefixer": "^6.3.2",
     "awesome-typescript-loader": "^2.2.4",
     "copy-webpack-plugin": "^4.0.1",
