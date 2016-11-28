@@ -7,12 +7,9 @@ export const RestService =  {
     xhr.send([body]);
     xhr.onreadystatechange = function() {
       if (this.readyState != 4) return;
-      // console.log(this.readyState + "" + this.status);
       if (this.status != 200) {
-        // console.log(this.status + ': ' + this.statusText);
         callBack(null);
       } else {
-        // console.log(this.responseText);
         callBack(this.responseText, context);
       }
     }

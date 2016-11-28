@@ -1,6 +1,6 @@
 declare module Weather {
   interface ICoordinate {
-    lon: string;
+    lon: number;
     lat: number;
   }
   interface IMainWeather {

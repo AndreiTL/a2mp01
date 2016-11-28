@@ -1,6 +1,4 @@
-
 import {RestService} from '../common/rest.service';
-import {LocationService} from '../common/location.service';
 
 export class WeatherService {
 
@@ -14,69 +12,81 @@ export class WeatherService {
   townTableTemp: string = '';
   townTableRender: string = 'Loading';
 
+  callbackDownloadFunction: Function;
+
   constructor(){
     this.innerBlock = `<div>        
             <div>Weather in towns: </div>
-            <div class="townstable"></div>
+            <div class="townstable">${this.townTableRender}</div>
         </div> `;
   }
 
-  _initTable(){
+  private _initTable(){
     return `<div class='tablewrapper'>`
   }
-  _addLineToTable(tableQuery: string, row: string){
-    tableQuery.concat(row);
-  }
-  _endTable(){
+  // _addLineToTable(tableQuery: string, row: string){
+  //   tableQuery.concat(row);
+  // }
+  private _endTable(){
     return '</div>';
   }
-  generateTableRow(rowObject: Weather.ITownWeather){
-    return `<div class="tablerow"> 
-        <div class="cell townname"><span>${rowObject.name}</span></div>
-        <div class="cell towntemp"><span>${rowObject.main.temp-274.15}</span></div>
-      </div>`;
+  private generateTableRow(rowObject: Weather.ITownWeather){
+    return `<div class="rowelement">         
+        <table class="tablerow">
+            <tr>
+                <td><span class="townname">${rowObject.name}</span></td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td><span>Temperature: </span><span>${Math.round(rowObject.main.temp-273.15)}</span></td>
+                <td><span>Humidity: </span><span>${rowObject.main.humidity||''}</span></td>
+                <td><span>Wind: </span><span>${rowObject.wind.speed||''}</span></td>
+            </tr>
+        </table>        
+      </div>`
   }
 
-  generateTownTable(array: Weather.ITownWeather[], context: WeatherService){
+  private generateTownTable(array: Weather.ITownWeather[], context: WeatherService){
     context.townTableTemp = context._initTable();
     array.forEach((value, index, array) => {
-      // context._addLineToTable(context.townTableTemp, context.generateTableRow(value));
       context.townTableTemp = context.townTableTemp.concat(context.generateTableRow(value));
     });
-    // context._endTable(context.townTableTemp);
     context.townTableTemp = context.townTableTemp.concat(context._endTable());
-
-    console.log(context.townTableTemp);
 
     context.townTableRender = String(context.townTableTemp);
     context.updateTowsTable(context);
   }
 
-  updateTowsTable(context: WeatherService){
+  private updateTowsTable(context: WeatherService){
     document.querySelector('.townstable').innerHTML = context.townTableRender;
   }
 
-  downloadWeatherInCircle(coordinates: Coordinates, context: WeatherService){
-    let urlTemplate: string = `http://api.openweathermap.org/data/2.5/find?lat=${coordinates.latitude}&lon=${coordinates.longitude}&cnt=${context.cnt}&appid=${context.API}`;
-    console.log(urlTemplate);
-    RestService.sendRequest(context.type, urlTemplate, context.async, context.callBackResponseList, context, '');
-  }
-
-  callBackResponseList(data: string, context: WeatherService){
+  private callBackResponseList(data: string, context: WeatherService){
     if (data !== null){
-      console.log(' data ' + data);
       context.weatherObject = <Weather.IWeatherResponse> JSON.parse(data);
       context.generateTownTable(context.weatherObject.list, context);
       context.updateTowsTable(context);
+      if (context.callbackDownloadFunction !== undefined){
+        context.callbackDownloadFunction();
+      }
     } else {
       console.log('Cann\'t load data from weather portal!');
       alert('Cann\'t load data from weather portal!');
     }
   }
 
+  downloadWeatherInCircle(latitude: number, longitude: number, count: number, callbackFunction: Function ){
+    let urlTemplate: string = `http://api.openweathermap.org/data/2.5/find?lat=${latitude}&lon=${longitude}&cnt=${count}&appid=${this.API}`;
+    this.callbackDownloadFunction = callbackFunction;
+    RestService.sendRequest(this.type, urlTemplate, this.async, this.callBackResponseList, this, '');
+  }
+
+  getWeatherObject(){
+    return this.weatherObject;
+  }
+
   getInner(){
-    LocationService.getCurrentLocation(this.downloadWeatherInCircle, this);
-    // this.downloadweather();
     return this.innerBlock;
   }
 }
