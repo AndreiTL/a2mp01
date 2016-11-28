@@ -3,17 +3,36 @@ import './index.scss';
 import {WeatherService} from './components/weather_component/weather.service';
 import {GoogleMapService} from './components/googlemap_component/googlemap.service';
 
+import {LocationService} from './components/common/location.service';
 
 class Main {
   weatherService: WeatherService;
   googleMapService: GoogleMapService;
 
-  constructor(){
+  defaultZoom: number = 8;
+  defaultCount: number = 5;
+
+  constructor(townCount: number){
     this.weatherService = new WeatherService();
-    this.googleMapService = new GoogleMapService('52.4383235', '31.0015138', '8');
+    this.googleMapService = new GoogleMapService();
+    this. defaultCount = townCount;
+  }
+
+  updateForLocation(crd: Coordinates, context: Main){
+    let lat: number = crd.latitude;
+    let lng: number = crd.longitude;
+
+    let zoom: number = context.defaultZoom;
+
+    let count: number = context.defaultCount;
+
+    context.googleMapService.setMapCenterAndZoom.call(context.googleMapService, lat, lng, zoom);
+    context.weatherService.downloadWeatherInCircle.call(context.weatherService, lat, lng, count);
+
   }
 
   renderData(){
+    LocationService.getCurrentLocation(this.updateForLocation, this);
     return `<div> 
           <div class='weather'>${this.weatherService.getInner()}</div>
           <div class='map'>${this.googleMapService.getInner()}</div>
@@ -21,6 +40,6 @@ class Main {
   }
 }
 
-var main = new Main();
+var main = new Main(50);
 
 document.querySelector('.app').innerHTML = main.renderData();

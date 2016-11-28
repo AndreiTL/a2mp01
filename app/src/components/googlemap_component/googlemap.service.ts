@@ -1,5 +1,5 @@
 import loadGoogleMapsAPI from 'load-google-maps-api';
-
+// import * as loadGoogleMapsAPI from 'load-google-maps-api/index.js';
 
 export class GoogleMapService {
 
@@ -14,19 +14,23 @@ export class GoogleMapService {
 
   key: string = 'AIzaSyDdauxpzXTyktNa8x97awm9_3X-3pycINA';
 
-  googleMapObj: Object;
+  googleMapObj: google.maps.Map;
 
   innerBlock: string = `<div id="map"></div>`;
-  constructor(lat: string, lng: string, zoom: string){
-    this.lat = lat;
-    this.lng = lng;
-    this.zoom = zoom;
-
+  constructor(){
     this.initMap();
-
   }
 
-
+  setMapCenterAndZoom(lat: number, lng: number, zoom: number){
+    let mapOptions: google.maps.MapOptions = {
+      center: {
+        lat: lat,
+        lng: lng
+      },
+      zoom: zoom
+    };
+    this.googleMapObj.setOptions(mapOptions);
+  }
 
   initMap() {
     loadGoogleMapsAPI({key: this.key}).then((googleMaps: any) => {
