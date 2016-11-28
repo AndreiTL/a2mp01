@@ -28,7 +28,7 @@ class Main {
     let count: number = context.defaultCount;
 
     context.googleMapService.setMapCenterAndZoom.call(context.googleMapService, lat, lng, zoom);
-    context.weatherService.downloadWeatherInCircle.call(context.weatherService, lat, lng, count, context.updateWeatherMarkers);
+    context.weatherService.downloadWeatherInCircle.call(context.weatherService, lat, lng, count, context.updateWeatherMarkers.bind(context));
 
   }
 
