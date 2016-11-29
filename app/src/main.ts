@@ -46,6 +46,9 @@ class Main {
   }
 }
 
-var main = new Main(10);
+
+// here in constructor you can specify number of towns to show.
+// weather API provide up to 50 towns at one request
+var main = new Main(5);
 
 document.querySelector('.app').innerHTML = main.renderData();

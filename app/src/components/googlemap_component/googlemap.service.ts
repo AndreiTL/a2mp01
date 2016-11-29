@@ -1,5 +1,5 @@
-import loadGoogleMapsAPI from 'load-google-maps-api';
-// import * as loadGoogleMapsAPI from 'load-google-maps-api/index.js';
+import {GoogleMapLoaderService} from '../common/google_maps_loader.service';
+
 
 export class GoogleMapService {
 
@@ -46,7 +46,7 @@ export class GoogleMapService {
   }
 
   initMap() {
-    loadGoogleMapsAPI({key: this.key}).then((googleMaps: any) => {
+    GoogleMapLoaderService.load({key: this.key}).then((googleMaps: any) => {
       this.googleMapObj = new googleMaps.Map(document.getElementById('googlemap'), {
         center: {lat: parseFloat(this.lat), lng: parseFloat(this.lng)},
         zoom: parseInt(this.zoom)
