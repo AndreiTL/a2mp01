@@ -10,8 +10,8 @@ module.exports = {
 
   output: {
     path: path.join(__dirname, 'index'),
-    filename: '[name].js',
-    publicPath: path.join(__dirname, 'index')
+    filename: '[name].js'
+
   },
 
   resolve: {
@@ -21,6 +21,10 @@ module.exports = {
   resolvePath: [
     './node_modules/'
   ],
+
+  devServer: {
+    contentBase: path.join(__dirname, 'index')
+  },
 
   module: {
     loaders: [
